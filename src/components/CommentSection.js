@@ -1,38 +1,35 @@
 import React, { useState } from 'react';
 
-function CommentSection({ comments, addComment }) {
+function CommentSection({ comments = [], addComment }) {
   const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (text.trim()) {
-      addComment(text.trim());
+      addComment(text);
       setText('');
     }
   };
 
   return (
-    <div className="mt-8">
-      <h4 className="text-xl font-bold text-blue-600 mb-3">Comments</h4>
-      <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
+    <div className="mt-10">
+      <h4 className="text-lg font-semibold text-indigo-700 mb-4">Comments</h4>
+      <ul className="space-y-3 mb-6">
+        {comments.map((c, index) => (
+          <li key={index} className="bg-gray-100 p-3 rounded-md text-sm text-gray-700">{c}</li>
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <input
-          className="input flex-1"
+          type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Write a comment..."
+          placeholder="Leave a comment"
+          className="input flex-1"
         />
         <button type="submit" className="btn-primary">Post</button>
       </form>
-
-      <div className="space-y-2">
-        {comments.map((c, idx) => (
-          <div key={idx} className="card">
-            <p>{c}</p>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
-
 export default CommentSection;

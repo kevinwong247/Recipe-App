@@ -3,23 +3,10 @@
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply inline-block px-4 py-2 rounded-md font-medium transition;
-  }
-
-  .btn-primary {
-    @apply btn bg-blue-600 text-white hover:bg-blue-700;
-  }
-
-  .btn-outline {
-    @apply btn border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white;
-  }
-
   .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-400;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500;
   }
-
-  .card {
-    @apply bg-white p-4 rounded shadow;
+  .btn-primary {
+    @apply bg-indigo-700 text-white font-semibold px-4 py-2 rounded hover:bg-indigo-800 transition;
   }
 }
