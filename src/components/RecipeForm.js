@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function RecipeForm({ addRecipe }) {
   const [form, setForm] = useState({
     title: '', description: '', instructions: '', image: '', category: ''
   });
+
   const navigate = useNavigate();
+  const { user } = useAuth(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -13,7 +16,17 @@ function RecipeForm({ addRecipe }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addRecipe({ ...form, author: 'Kevin Wong', createdAt: new Date() });
+
+    const newRecipe = {
+      ...form,
+      author: user?.email || 'Anonymous',
+      userId: user?.uid || null, 
+      createdAt: Date.now(),
+      comments: [],
+      ratings: [],
+    };
+
+    addRecipe(newRecipe);
     navigate('/');
   };
 
@@ -37,4 +50,5 @@ function RecipeForm({ addRecipe }) {
     </div>
   );
 }
+
 export default RecipeForm;

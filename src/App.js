@@ -7,6 +7,8 @@ import RecipeDetails from './pages/RecipeDetails';
 import RecipeForm from './components/RecipeForm';
 import EditRecipeForm from './components/EditRecipeForm';
 import FindFriends from './components/FindFriends';
+import Login from './pages/Login';      
+import Signup from './pages/Signup';    
 import dummyData from './utils/dummyData';
 
 function App() {
@@ -32,6 +34,10 @@ function App() {
         <Route path="/profile" element={<Profile friends={friends} setFriends={setFriends} />} />
         <Route path="/find" element={<FindFriends friends={friends} setFriends={setFriends} />} />
         <Route path="/recipe/:id" element={<RecipeDetails recipes={recipes} setRecipes={setRecipes} />} />
+        
+        
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </>
   );
